@@ -92,10 +92,7 @@ export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOPATH/bin"
 
 echo "Download Kaizen Project"
-if ! go get -v github.com/mauleyzaola/kaizen; then
-    echo "[FAIL] Cannot read kaizen repository."
-    exit 1
-fi
+go get -v github.com/mauleyzaola/kaizen
 
 echo "Download go dependencies and running unit tests"
 cd $GOPATH/src/github.com/$GH_ACCOUNT/$GH_REPO/
