@@ -42,6 +42,7 @@ echo "Adding role in postgres for current user and setting up postgres password 
 sudo -u postgres psql -c "alter user postgres with password 'nevermind';"
 sudo -u postgres psql -c "create role $USER;"
 sudo -u postgres psql -c "alter role $USER login superuser createdb;"
+sudo -u postgres psql -c "create database k;"
 createdb
 
 echo "Installing Node.js"
@@ -107,6 +108,7 @@ if [ ! -f /usr/bin/goose ]; then
 fi
 
 #create nginx default file to point to /static/app
+echo "configuring nginx server"
 KAIZEN=$GOPATH/src/github.com/mauleyzaola/kaizen
 
 (eval "cat <<EOF
@@ -124,4 +126,17 @@ bower cache clean
 bower update
 cd ~/
 
-#TODO create kaizen service
+#create kaizen service
+echo "configuring kaizen service"
+cd $KAIZEN/server/
+cp config.json.sample config.json
+go build
+
+(eval "cat <<EOF
+$(<$KAIZEN/docs/kaizen.conf)
+EOF
+" 2> /dev/null) > /tmp/kaizen.conf.parsed
+
+sed 's/@/$/g' /tmp/kaizen.conf.parsed > /tmp/kaizen.conf
+sudo mv /tmp/kaizen.conf /etc/init/
+sudo service kaizen start
