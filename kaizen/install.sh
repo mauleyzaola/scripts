@@ -139,4 +139,4 @@ EOF
 
 sed 's/@/$/g' /tmp/kaizen.conf.parsed > /tmp/kaizen.conf
 sudo mv /tmp/kaizen.conf /etc/init/
-sudo service kaizen start
+sudo start kaizen
