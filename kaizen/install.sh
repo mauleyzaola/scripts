@@ -95,7 +95,10 @@ go get -v github.com/mauleyzaola/kaizen
 
 echo "Download go dependencies and running unit tests"
 cd $GOPATH/src/github.com/$GH_ACCOUNT/$GH_REPO/
-./check.sh
+if ! ./check.sh; then
+    echo "[FAIL] One or more unit tests failed."
+    exit 1
+fi
 
 #create goose alias in /usr/bin/goose
 if [ ! -f /usr/bin/goose ]; then
@@ -105,14 +108,14 @@ fi
 
 #create nginx default file to point to /static/app
 KAIZEN=$GOPATH/src/github.com/mauleyzaola/kaizen
-TMPNGINX=/tmp/default.nginx
 
 (eval "cat <<EOF
 $(<$KAIZEN/docs/nginx.linux.txt)
 EOF
-" 2> /dev/null) > $TMPNGINX
+" 2> /dev/null) > /tmp/default.nginx
 
-sudo sed 's/@/$/g' $TMPNGINX > /etc/nginx/sites-available/default
+sed 's/@/$/g' /tmp/default.nginx > /tmp/default
+sudo mv /tmp/default /etc/nginx/sites-available/
 sudo service nginx restart
 
 #install static dependencies
