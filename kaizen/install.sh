@@ -27,7 +27,7 @@ sudo apt-get install jq
 #check if there is a ssh key generated, if not create it now
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
 	echo "there is no key generated, will create one now"
-	ssh-keygen -f file.rsa -t rsa -N ''
+	ssh-keygen
 fi
 
 #add ssh key to github repo
@@ -92,7 +92,10 @@ export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOPATH/bin"
 
 echo "Download Kaizen Project"
-go get -v github.com/mauleyzaola/kaizen
+if ! go get -v github.com/mauleyzaola/kaizen; then
+    echo "[FAIL] Cannot read kaizen repository."
+    exit 1
+fi
 
 echo "Download go dependencies and running unit tests"
 cd $GOPATH/src/github.com/$GH_ACCOUNT/$GH_REPO/
