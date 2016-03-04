@@ -97,7 +97,6 @@ go get -v github.com/mauleyzaola/kaizen
 echo "Download go dependencies and running unit tests"
 cd $GOPATH/src/github.com/$GH_ACCOUNT/$GH_REPO/
 if ! ./check.sh; then
-    echo "[FAIL] One or more unit tests failed."
     exit 1
 fi
 
