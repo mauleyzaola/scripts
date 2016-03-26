@@ -8,7 +8,6 @@ mkdir -p ~/npm
 npm config set prefix ~/npm
 echo export PATH="$PATH:$HOME/npm/bin" >> ~/.bashrc
 echo export NODE_PATH="$NODE_PATH:~/npm/lib/node_modules" >>  ~/.bashrc
-source ~/.bashrc
 
 # front-end dependencies recommended to install
 npm install --g bower grunt-cli
