@@ -100,6 +100,7 @@ go get -v github.com/mauleyzaola/kaizen
 
 echo "Download go dependencies and running unit tests"
 cd $GOPATH/src/github.com/$GH_ACCOUNT/$GH_REPO/
+go get -v -u ./...
 if ! ./check.sh; then
     exit 1
 fi
