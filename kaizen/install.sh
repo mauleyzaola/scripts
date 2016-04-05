@@ -62,8 +62,6 @@ echo 'export NODE_PATH=$NODE_PATH:~/npm/lib/node_modules' >>  ~/.bashrc
 export PATH="$PATH:$HOME/npm/bin"
 export NODE_PATH="$NODE_PATH:~/npm/lib/node_modules"
 
-#refresh the profile settings
-source ~/.bashrc
 
 echo "Installing bower and Grunt"
 npm install --g bower grunt-cli
