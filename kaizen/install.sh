@@ -7,7 +7,7 @@ Takasago Kaizen Installer for Ubuntu 14.04.3
 
 GH_ACCOUNT="mauleyzaola"
 GH_REPO="kaizen"
-GH_USER="mauleyzaola"  #change this value if your github username is different
+GH_USER="$USER"  #change this value if your github username is different
 
 
 #setup language
@@ -30,8 +30,14 @@ if [ ! -f ~/.ssh/id_rsa.pub ]; then
 	ssh-keygen
 fi
 
-#add ssh key to github repo
-curl -u "$GH_USER" --data "{\"title\":\"`date +%Y%m%d%H%M%S`\",\"key\":\"`cat ~/.ssh/id_rsa.pub`\"}" https://api.github.com/repos/$GH_ACCOUNT/$GH_REPO/keys | jq .
+#ask the user if a new key is to be created
+echo "You will need full access to repository settings in order to create a key."
+echo "If you already have guest access please answer no to next question."
+read -p "Do you want to create a new ssh key in repository? (y/n)" newk
+if [ $newk == "y" ]; then
+	#add ssh key to github repo
+	curl -u "$GH_USER" --data "{\"title\":\"`date +%Y%m%d%H%M%S`\",\"key\":\"`cat ~/.ssh/id_rsa.pub`\"}" https://api.github.com/repos/$GH_ACCOUNT/$GH_REPO/keys | jq .
+fi
 
 echo "Installing Postgresql Database, Git, Nginx, MongoDb, Redis"
 sudo apt-get install software-properties-common python-software-properties python g++ make cmake postgresql postgresql-contrib git nginx mongodb redis-server -y
