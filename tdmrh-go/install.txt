@@ -1,0 +1,29 @@
+#NOTA: no ejecutar como un bash, sino linea por linea en la terminal, sino no funcionara
+
+ssh-keygen
+cat ~/.ssh/id_rsa.pub
+
+sudo apt-get update --fix-missing
+sudo apt-get install git nginx redis-server mongodb -y
+git config --global url."git@github.com:".insteadOf "https://github.com/"
+wget -O - https://raw.githubusercontent.com/mauleyzaola/scripts/master/node/node.install.sh | sh
+wget -O - https://raw.githubusercontent.com/mauleyzaola/scripts/master/go/go.install.sh | sh
+source ~/.bashrc
+wget -O - https://raw.githubusercontent.com/mauleyzaola/scripts/master/postgres/pg.install.sh | sh
+
+go get -v github.com/mauleyzaola/tdmrh-go
+cd $GOPATH/src/github.com/mauleyzaola/tdmrh-go/
+./check.sh upgrade
+sudo ln -s $GOPATH/bin/goose /usr/bin/goose
+
+sudo cp $GOPATH/src/github.com/mauleyzaola/tdmrh-go/docs/nginx.default.txt /etc/nginx/sites-available/default
+sudo service nginx restart
+cd $GOPATH/src/github.com/mauleyzaola/tdmrh-go/static
+bower cache clean
+bower update
+
+
+sudo cp $GOPATH/src/github.com/mauleyzaola/tdmrh-go/docs/tdmrh-go.conf /etc/init/
+cd $GOPATH/src/github.com/mauleyzaola/tdmrh-go/server
+go build
+sudo start tdmrh-go
