@@ -4,7 +4,7 @@ ssh-keygen
 cat ~/.ssh/id_rsa.pub
 
 sudo apt-get update --fix-missing
-sudo apt-get install git nginx redis-server mongodb -y
+sudo apt-get install git nginx redis-server mongodb wkhtmltopdf xvfb -y
 git config --global url."git@github.com:".insteadOf "https://github.com/"
 wget -O - https://raw.githubusercontent.com/mauleyzaola/scripts/master/node/node.install.sh | sh
 wget -O - https://raw.githubusercontent.com/mauleyzaola/scripts/master/go/go.install.sh | sh
