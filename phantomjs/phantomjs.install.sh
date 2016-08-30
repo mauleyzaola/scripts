@@ -7,7 +7,7 @@ cd /usr/local/share
 
 
 #download latest phantomjs and uncompress
-sudo wget https://phantomjs.googlecode.com/files/phantomjs-1.9.2-linux-x86_64.tar.bz2
+sudo wget https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/phantomjs/phantomjs-1.9.2-linux-x86_64.tar.bz2
 sudo tar xjf phantomjs-1.9.2-linux-x86_64.tar.bz2
 
 #delete downloaded file
