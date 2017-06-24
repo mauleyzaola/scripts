@@ -1,8 +1,14 @@
 #!/bin/bash
 
+# linux installation of vim / vim-go and related plugins for golang development
+
 sudo apt-get install vim-gnome exuberant-ctags -y
 
 mkdir -p ~/.vim/{autoload,bundle}
+
+cd /tmp
+wget https://raw.githubusercontent.com/mauleyzaola/scripts/master/vim/.vimrc
+mv .vimrc ~/
 
 wget https://raw.githubusercontent.com/mauleyzaola/scripts/master/bin/pathogen.vim
 mv pathogen.vim ~/.vim/autoload/
