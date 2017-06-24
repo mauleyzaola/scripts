@@ -2,6 +2,7 @@
 
 # linux installation of vim / vim-go and related plugins for golang development
 
+sudo apt-get update --fix-missing
 sudo apt-get install vim-gnome exuberant-ctags -y
 
 mkdir -p ~/.vim/{autoload,bundle}
