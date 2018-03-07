@@ -1,4 +1,4 @@
-####To install latest node.js
+#### To install latest node.js
 ```
-wget -O - https://raw.githubusercontent.com/mauleyzaola/scripts/master/node/node.install.sh | sh
+curl https://raw.githubusercontent.com/mauleyzaola/nodejs-linux-installer/master/node-install.sh 2>/dev/null | sh
 ```
