@@ -1,7 +1,7 @@
 [
 	{
 	"action": "talk",
-	"voiceName": "Russell",
-	"text": "Hi Olga, this is a automated validation system. Your code is 1-2-3-4-5-6. I repeat: your code is 1-2-3-4-5-6 You may now hang up. Thank you."
+	"voiceName": "Penelope",
+	"text": "Hola Olga, este es un sistema automatizado de validacion. Por favor anota el siguiente codigo para validar que este es tu telefono. El codigo es 1-2-3-4-5-6. Repito, el codigo es: 1-2-3-4-5-6. Ya puedes colgar si gustas, gracias."
 	}
 ]
