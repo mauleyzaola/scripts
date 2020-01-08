@@ -1,5 +1,5 @@
 #!/bin/bash
-export GOFILE="go1.13.4.linux-amd64.tar.gz"
+export GOFILE="go1.13.5.linux-amd64.tar.gz"
 cd ~
 wget "https://storage.googleapis.com/golang/$GOFILE"
 sudo tar -C /usr/local -xzf "$GOFILE"
