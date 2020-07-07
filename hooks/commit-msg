@@ -3,7 +3,7 @@
 # read active branch
 current_branch="$(git rev-parse --abbrev-ref HEAD)"
 
-# regex to validate in commit msg
+# check for jira.prefix value in git config
 jira_prefix=$(git config jira.prefix)
 if [ -z "$jira_prefix" ];then
     echo "Cannot commit: missing jira prefix value"
@@ -14,12 +14,10 @@ if [ -z "$jira_prefix" ];then
     exit 1
 fi
 
-echo "prefix: $jira_prefix"
+# regex to validate in commit msg
+commit_regex="($jira_prefix-[0-9]+.+)"
+error_msg="Aborting commit. Your commit message is missing a reference to Jira ticket, e.g. ('$jira_prefix-123 message')"
 
-commit_regex="($jira_prefix-[0-9]+)"
-error_msg="Aborting commit. Your commit message is missing a reference to Jira ticket, e.g. ('$jira_prefix-123')"
-
-if ! grep -iqE "$commit_regex" "$1"; then
-    echo "$error_msg" >&2
-    exit 1
-fi
+[[ $1 =~ $commit_regex ]] && exit 0
+echo "$error_msg" >&2
+exit 1
