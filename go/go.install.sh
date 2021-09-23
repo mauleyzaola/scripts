@@ -5,7 +5,7 @@ wget "https://golang.org/dl/$GOFILE"
 sudo tar -C /usr/local -xzf "$GOFILE"
 rm "$GOFILE"
 
-echo '#go configuration' >> ~/.bashrc
+echo ' \n\n#go configuration' >> ~/.bashrc
 echo 'export PATH=$PATH:/usr/local/go/bin' >> ~/.bashrc
 echo 'export GOPATH=$HOME/go' >> ~/.bashrc
 echo 'export GOBIN=$GOPATH/bin' >> ~/.bashrc
