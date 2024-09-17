@@ -1,6 +1,6 @@
 #!/bin/bash
 cd ~
-export GOFILE="go1.23.0.linux-amd64.tar.gz"
+export GOFILE="go1.23.1.linux-amd64.tar.gz"
 wget "https://go.dev/dl/$GOFILE"
 sudo tar -C /usr/local -xzf "$GOFILE"
 rm "$GOFILE"
